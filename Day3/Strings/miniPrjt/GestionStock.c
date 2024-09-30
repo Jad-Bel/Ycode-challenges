@@ -8,8 +8,27 @@ typedef struct {
     char email[50];
 }contact;
 
+contact contacts[100];
+int totalContacts = 0;
+
 void ajouter {
+    printf("Entrer le nom du conctact: ");
+    scanf("%s", contacts[totalContacts].nom);
     
+    printf("Entrer le numero du conctact: ");
+    scanf("%s", contacts[totalContacts].numTel);
+    
+    printf("Entrer le email du conctact: ");
+    scanf("%s", contacts[totalContacts].email);
+
+    totalContacts++;
+    printf("Contact ajouter avec succes\n");
+}
+
+void modifierContact() {
+    char nom[100];
+    printf("Entrer le nom du conctact que vous cherger: ");
+    fgets(nom, sizeof(nom), stdin);
 }
 
 int main() {
