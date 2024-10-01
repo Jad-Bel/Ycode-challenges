@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 typedef struct {
     char name[30];
@@ -130,13 +131,18 @@ void affichage() {
 
         switch (choixAffichage) {
             case 1: {
+                int found = 0;
                 char nom[50];
-                printf("Entrez le nom du contact à afficher: ");
+                printf("Entrez le nom du contact a afficher: ");
                 scanf("%s", nom);
                 for (int i = 0; i < totalContacts; i++) {
                     if (strcmp(contacts[i].name, nom) == 0) {
+                        found = 1;
                         printf("\nNom: %s\nTelephone: %s\nE-mail: %s\n", contacts[i].name, contacts[i].num, contacts[i].email);
-                    }
+                    } 
+                    
+                } if (!found) {
+                    printf("Aucun contact a afficher.\n");
                 }
                 break;
             }
@@ -245,7 +251,7 @@ void suppressionContact() {
     int contactTrouve = -1;
 
     printf("Entrer le nom du contact a supprimer: ");
-    scanf("%s", &name);
+    scanf("%s", name);
 
     for(int i = 0; i < totalContacts; i++){
         if (strcmp(contacts[i].name, name) == 0){
@@ -261,10 +267,11 @@ void suppressionContact() {
     printf("Voules vous vraiment supprimer ce contact ?\n");
     printf("Nom: %s.\n Telephone: %s.\n E-mail: %s.\n", contacts[contactTrouve].name, contacts[contactTrouve].num, contacts[contactTrouve].email);
     printf("Confirmez (Yes/No): ");
+    scanf("%s", confirmation);
 
     if(strcmp(confirmation, "Yes") == 0 || strcmp(confirmation, "yes") == 0) {
-        for(int i = contactTrouve; i < totalContacts - 1; i++){
-            contacts[i] = contacts[i + 1];
+        for(contactTrouve; contactTrouve < totalContacts - 1; contactTrouve++){
+            contacts[contactTrouve] = contacts[contactTrouve + 1];
         } totalContacts--;
         printf("Contact supprime avec succes !\n");
         
@@ -279,47 +286,65 @@ void rechercherUnContact() {
     char num[20];
     int contactTrouve = -1;
 
-    do{
+    do {
         printf("1. Rechercher par nom\n");
         printf("2. Rechercher par numero de telephone\n");
-        printf("3. retourner au menu principal\n");
+        printf("3. Retourner au menu principal\n");
         printf("Entrer votre choix: ");
         scanf("%d", &choixRecherche);
 
         switch(choixRecherche) {
-            case 1: printf("ENtrer le nom du contact: ");
-            scanf("%s", &name);
-
-            contactTrouve = -1; 
-            for(int i = 0; i < totalContacts; i++){
-                if (strcmp (contacts[i].name, name) == 0) {
-                    contactTrouve = i;
-                    break;
-                }
-            }
-        } if(contactTrouve != -1){
-            printf("Contact trouve: \n");
-            printf("Nom: %s\nTelephone: %s\nE-mail: %s\n", contacts[contactTrouve].name, contacts[contactTrouve].num, contacts[contactTrouve].email);
-        } else {
-            printf("Contact non trouve avec le nom '%s'.", contacts[contactTrouve].name);
-        }; break;
-
-        case 2: 
-                printf("Entrer le numero de telephone du contact: ");
-                scanf("%s", &num);
+            case 1: 
+                printf("Entrer le nom du contact: ");
+                scanf("%s", name);  
 
                 contactTrouve = -1;
-                for(int i = 0; i < totalContacts; i++){
-                if (strcmp (contacts[i].num, num) == 0) {
-                    contactTrouve = i;
-                    break;
+                for(int i = 0; i < totalContacts; i++) {
+                    if (strcmp(contacts[i].name, name) == 0) {
+                        contactTrouve = i;
+                        break;
+                    }
                 }
-            } if (contactTrouve != -1) {
-                printf("Contact trouve: \n");
-                printf("Nom: %s\nTelephone: %s\nE-mail: %s\n", contacts[contactTrouve].name, contacts[contactTrouve].num, contacts[contactTrouve].email);
-            }     
-    }
+                
+                if(contactTrouve != -1) {
+                    printf("Contact trouve: \n");
+                    printf("Nom: %s\nTelephone: %s\nE-mail: %s\n", contacts[contactTrouve].name, contacts[contactTrouve].num, contacts[contactTrouve].email);
+                } else {
+                    printf("Contact non trouve avec le nom '%s'.\n", name);
+                }
+                break;
+
+            case 2: 
+                printf("Entrer le numero de telephone du contact: ");
+                scanf("%s", num);  
+
+                contactTrouve = -1;
+                for(int i = 0; i < totalContacts; i++) {
+                    if (strcmp(contacts[i].num, num) == 0) {
+                        contactTrouve = i;
+                        break;
+                    }
+                }
+
+                if (contactTrouve != -1) {
+                    printf("Contact trouve: \n");
+                    printf("Nom: %s\nTelephone: %s\nE-mail: %s\n", contacts[contactTrouve].name, contacts[contactTrouve].num, contacts[contactTrouve].email);
+                } else {
+                    printf("Contact non trouve avec le numero '%s'.\n", num);
+                }
+                break;
+
+            case 3: 
+                printf("Retour au menu principal...\n");
+                break;
+
+            default: 
+                printf("Choix invalide.\n");
+        }
+    } while (choixRecherche != 3); 
 }
+
+
 int main() {
     int choix;
     do {
