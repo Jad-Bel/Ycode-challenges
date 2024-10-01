@@ -343,6 +343,31 @@ void rechercherUnContact() {
         }
     } while (choixRecherche != 3); 
 }
+void max(){
+    char maxnum[30];
+    int i;
+
+    for(i = 0; i < totalContacts; i++){
+        if(strlen(contacts[i].name) > strlen(maxnum)){
+            strcpy(maxnum, contacts[i].name);
+        }
+    } printf("%s", maxnum);
+}
+
+void min(){
+    char minnum[30];
+    int i; 
+    for(i = 0; i > totalContacts; i++) {
+        if(strlen(contacts[i].name) < strlen(minnum)) {
+            strcpy(minnum, contacts[i].name);
+        }
+    } printf("%s", minnum);
+}
+
+
+void statistiques() {
+    
+}
 
 
 int main() {
