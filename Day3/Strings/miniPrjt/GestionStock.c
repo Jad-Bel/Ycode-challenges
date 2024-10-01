@@ -13,15 +13,19 @@ int totalContacts = 0;
 
 void ajouter {
     printf("Entrer le nom du conctact: ");
-    scanf("%s", contacts[totalContacts].nom);
-    
+    fgets(contacts.nom, sizeof(nom), stdin);    
     printf("Entrer le numero du conctact: ");
     scanf("%s", contacts[totalContacts].numTel);
     
     printf("Entrer le email du conctact: ");
-    scanf("%s", contacts#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+    scanf("%s", contact.email);
+
+    [totalContacts].email;
+
+    totalContacts++;
+    printf("Contact ajouter avec succes\n");
+}
+
 
 typedef struct {
     char nom[50];
@@ -31,20 +35,6 @@ typedef struct {
 
 contact contacts[100];
 int totalContacts = 0;
-
-void ajouter {
-    printf("Entrer le nom du conctact: ");
-    scanf("%s", contacts[totalContacts].nom);
-    
-    printf("Entrer le numero du conctact: ");
-    scanf("%s", contacts[totalContacts].numTel);
-    
-    printf("Entrer le email du conctact: ");
-    scanf("%s", contacts[totalContacts].email);
-
-    totalContacts++;
-    printf("Contact ajouter avec succes\n");
-}
 
 void modifierContact() {
     char nom[100];
@@ -76,7 +66,7 @@ void supprimerContact (){
     fgets(nom, sizeof(nom), stdin);
 
     for(int i = 0; i < totalContacts; i++){
-        if(strcmp(contact[i].nom, nom) == 0){
+        if(strcmp(contacts[i].nom, nom) == 0){
             for(int j = 0; j < totalContacts - 1; j++){
                 contacts[j] = contacts[j + 1];
             } totalContacts--;
@@ -105,9 +95,9 @@ void rechercherContact() {
         fgets(nom, sizeoff(nom), stdin);
 
         for(int i = 0; i < totalContacts; i++){
-            if(strcmp(contact[i].nom, nom) == 0){
+            if(strcmp(contacts[i].nom, nom) == 0){
                 printf("Nom: %s.\nTéléphone: %s.\nE-mail: %s.\n", 
-                   contacts[i].nom, contacts[i].telephone, contacts[i].email);            }
+                   contacts[i].nom, contacts[i].tele, contacts[i].email);}
         } else {
             printf("Contact non trouve.\n");
         }
@@ -137,48 +127,15 @@ int main() {
             default: printf("\nChoix invalid. Entrer un choix de 1 a 5, pour quitter tapper 0."); break;
         }
         
-    }while (choix != 0);
+    }while (choix != 0);        
 
-    return 0;
-} 
-[totalContacts].email);
+    return 0; }
 
-    totalContacts++;
-    printf("Contact ajouter avec succes\n");
-}
+
+
 
 void modifierContact() {
     char nom[100];
     printf("Entrer le nom du conctact que vous cherger: ");
     fgets(nom, sizeof(nom), stdin);
 }
-
-int main() {
-
-    int choix;
-
-    do {
-        printf("\n\t********* Menu Principal ********\n");
-        printf("\n1. Ajouter un contact.");
-        printf("\n2. Modifier un contact.");
-        printf("\n3. Supprimer un contact.");
-        printf("\n4. Affichier un contact.");
-        printf("\n5. Rechercher un contact.");
-        printf("\n0. Quitter.");
-        scanf("%d", &choix);
-
-        switch (choix) {
-            case 1: ;break;
-            case 2: ;break;
-            case 3: ;break;
-            case 4: ;break;
-            case 5: ;break;
-            default: ;break;
-        }
-        
-    }while (choix != 0);
-
-    return 0;
-} 
-
-
