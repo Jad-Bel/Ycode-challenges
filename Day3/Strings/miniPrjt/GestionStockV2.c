@@ -364,9 +364,40 @@ void min(){
     } printf("%s", minnum);
 }
 
+void avg() {
+    char name[30];
+    int avgCont;
+if(totalContacts == 0){
+    printf("aucun contacts trouve.\n");
+}
+    for(int i = 0; i < totalContacts; i++){
+         avgCont = strlen(contacts[i].name);
+    }
+
+    float moyenne = (float) avgCont / totalContacts;
+
+    printf("Longeur moyenne des numeros telephone: %.2f caracteres.\n", moyenne);
+}
 
 void statistiques() {
-    
+    int choixStats;
+
+    do{
+        printf("1. Le max des numeros.\n");
+        printf("2. Le max des numeros.\n");
+        printf("3. Le max des numeros.\n");
+        printf("6. Retour au menu principal...\n");
+        printf("Entrer votre choix: ");
+        scanf("%d", &choixStats);
+
+        switch (choixStats) {
+            case 1: max(); break;
+            case 2: min(); break;
+            case 3: avg(); break;
+            case 6: printf("Retour..."); break;
+            default: printf("Choix invalide."); break;
+        }
+    } while (choixStats != 6);
 }
 
 
@@ -378,6 +409,7 @@ int main() {
         printf("2. Afficher tous les contacts.\n");
         printf("3. Modifier un contact.\n");
         printf("4. Suppression d'un contact.\n");
+        printf("5. Statistiques de lite de contacts.\n");
         printf("0. Quitter.\n");
         printf("Entrez votre choix: ");
         scanf("%d", &choix);
@@ -394,6 +426,9 @@ int main() {
                 break;
             case 4: 
                 suppressionContact(); 
+                break;
+            case 5: 
+                statistiques(); 
                 break;
             
             case 0:
